@@ -11,7 +11,7 @@ export const Feature = ({
   description,
   image_path
 }: FeatureProps) => {
-  const featureSvgs = {
+  const featureSvgs:any = {
     'Unparalleled Cinematic Experience': (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +161,7 @@ export const Feature = ({
       )}
 
       <div className="feature-text">
-        {featureSvgs[`${title}`]}
+        {featureSvgs[title]}
         <p className="feature-text-heading text-primary-white">{title}</p>
         <p className="feature-text-details text-primary-infoMovie">
           {description}

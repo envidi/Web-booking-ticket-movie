@@ -4,7 +4,7 @@ export interface MyObjectComment {
   id?: number
   _id?: string
   content: string
-  like: string[]
+  like: number
   comments: MyObjectComment[]
   userId?: {
     name: string

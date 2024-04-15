@@ -45,6 +45,7 @@ export interface TicketBill {
     movieId: string
     price: number
   }
+  orderNumber ?: number
   seatId: TicketSeatBill[]
   userId: string
   movieId: {

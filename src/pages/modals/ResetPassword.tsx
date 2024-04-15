@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import BarLoader from 'react-spinners/BarLoader'
 import { useMutation } from '@tanstack/react-query'
-import { forgotPassword, resetPassword, signin } from '@/api/auth'
+import { resetPassword } from '@/api/auth'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 interface FormValues {
   password: string
-  token: string,
+  token: string
   confirmPassword: string
 }
 
 const ResetPassword = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
   const [passViewState, setPassViewState] = useState(false)
   const [showForm, setShowForm] = useState(true)
- 
 
   const togglePassState = (e: any) => {
     e.preventDefault()
@@ -28,7 +27,7 @@ const ResetPassword = () => {
     },
     onError() {
       toast.error('Cập nhật mật khẩu thất bại, kiểm tra lại thông tin ')
-    },
+    }
   })
 
   const formikValidate = useFormik<FormValues>({
@@ -40,7 +39,6 @@ const ResetPassword = () => {
     validate: (values) => {
       const errors: Partial<FormValues> = {}
 
-   
       if (!values.password) {
         errors.password = 'Bắt buộc phải nhập password'
       } else if (values.password.length < 6) {
@@ -50,8 +48,7 @@ const ResetPassword = () => {
         errors.confirmPassword = 'Bắt buộc phải nhập confirmPassword'
       } else if (values.confirmPassword.length < 6) {
         errors.confirmPassword = 'Xác nhận mật khẩu phải lớn hơn 6 ký tự'
-      }
-      else if (values.confirmPassword !== values.password) {
+      } else if (values.confirmPassword !== values.password) {
         errors.confirmPassword = 'Mật khẩu  không khớp, thử lại đi !!!!!'
       }
       if (!values.token) {
@@ -69,7 +66,7 @@ const ResetPassword = () => {
       } catch (error) {
         console.error('Lỗi khi gọi API:', error)
       }
-    },
+    }
   })
 
   const handleLoginState = () => {
@@ -105,15 +102,12 @@ const ResetPassword = () => {
               </button>
             </div>
 
-            {formikValidate.touched.token &&
-              formikValidate.errors.token && (
-                <div className="text-red-500">
-                  {formikValidate.errors.token}
-                </div>
-              )}
+            {formikValidate.touched.token && formikValidate.errors.token && (
+              <div className="text-red-500">{formikValidate.errors.token}</div>
+            )}
             <div className="signup-form-category">
               <label>
-              Nhập OTP của bạn : <span>*</span>
+                Nhập OTP của bạn : <span>*</span>
               </label>
               <div className="input-password">
                 <input
@@ -174,7 +168,7 @@ const ResetPassword = () => {
               )}
             <div className="signup-form-category">
               <label>
-              Nhập  mật khẩu của bạn : <span>*</span>
+                Nhập mật khẩu của bạn : <span>*</span>
               </label>
               <div className="input-password">
                 <input
@@ -236,7 +230,7 @@ const ResetPassword = () => {
               )}
             <div className="signup-form-category">
               <label>
-              Nhập mật khẩu xác nhận của bạn: <span>*</span>
+                Nhập mật khẩu xác nhận của bạn: <span>*</span>
               </label>
               <div className="input-password">
                 <input
@@ -290,12 +284,9 @@ const ResetPassword = () => {
               </div>
 
               <button type="submit" className="btn-reg bg-[#eb3656]">
-              {loading ? <BarLoader color="#e6e6e8" /> : 'Cập nhật mật khẩu'}
-            </button>
+                {loading ? <BarLoader color="#e6e6e8" /> : 'Cập nhật mật khẩu'}
+              </button>
             </div>
-
-
-         
           </form>
         </div>
       )}

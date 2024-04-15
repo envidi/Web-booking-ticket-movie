@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CalendarDays, ArrowDownUp, CheckIcon } from 'lucide-react'
+import { CalendarDays, ArrowDownUp } from 'lucide-react'
 import { format } from 'date-fns'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -104,8 +104,7 @@ export function AccountForm() {
                 <Input placeholder="Your name" {...field} />
               </FormControl>
               <FormDescription>
-                Đây là tên sẽ được hiển thị trên hồ sơ của bạn và trong
-                email.
+                Đây là tên sẽ được hiển thị trên hồ sơ của bạn và trong email.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -149,7 +148,7 @@ export function AccountForm() {
                 </PopoverContent>
               </Popover>
               <FormDescription>
-              Ngày sinh của bạn được sử dụng để tính tuổi của bạn.
+                Ngày sinh của bạn được sử dụng để tính tuổi của bạn.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -158,7 +157,7 @@ export function AccountForm() {
         <FormField
           control={form.control}
           name="language"
-          render={({ field }) => (
+          render={() => (
             <FormItem className="flex flex-col">
               <FormLabel>Ngôn ngữ</FormLabel>
               <Popover>
@@ -187,7 +186,9 @@ export function AccountForm() {
                   <Command>
                     <CommandInput placeholder="Type a command or search..." />
                     <CommandList>
-                      <CommandEmpty>Không có kết quả nào được tìm thấy.</CommandEmpty>
+                      <CommandEmpty>
+                        Không có kết quả nào được tìm thấy.
+                      </CommandEmpty>
                       <CommandGroup heading="Suggestions">
                         <CommandItem>Lịch</CommandItem>
                         <CommandItem>Tìm kiếm biểu tượng cảm xúc</CommandItem>
@@ -204,7 +205,7 @@ export function AccountForm() {
                 </PopoverContent>
               </Popover>
               <FormDescription>
-              Đây là ngôn ngữ sẽ được sử dụng trong bảng điều khiển.
+                Đây là ngôn ngữ sẽ được sử dụng trong bảng điều khiển.
               </FormDescription>
               <FormMessage />
             </FormItem>

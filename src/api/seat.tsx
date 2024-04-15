@@ -1,4 +1,3 @@
-import { Seat } from '@/admin/types/seat'
 import instance from './config'
 
 export const getOneSeat = async (id: string) => {
@@ -53,17 +52,3 @@ export const getShowsByHall = async (hallId: string) => {
   return result.data.response.docs
 }
 
-export const addSeat = async (seat: Seat) => {
-  const result = await instance.post('/seat', seat)
-  return result.data
-}
-
-export const removeSeat = async (id: string) => {
-  const result = await instance.delete(`/seat/${id}`)
-  return result.data
-}
-
-export const editSeat = async (seat: Seat, id: string) => {
-  const result = await instance.patch(`/seat/${id}`, seat)
-  return result.data
-}

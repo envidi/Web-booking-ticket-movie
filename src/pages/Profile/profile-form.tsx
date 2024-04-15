@@ -30,8 +30,8 @@ export interface UserUpdateType {
   email: string
   address: string
   mobile: string | number
-  age: number
-  sex: string
+  age?: number
+  sex?: string
 }
 
 const profileFormSchema = Joi.object({

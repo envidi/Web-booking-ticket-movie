@@ -1,4 +1,3 @@
-import { FormMovieAdd } from '@/admin/types/movie'
 import instance from './config'
 
 export interface QueryMovie {
@@ -64,26 +63,3 @@ export const getCountMovie = async () => {
   return result.data.data
 }
 
-//remove Movie
-export const removeMovie = async (id: string) => {
-  const result = await instance.delete(`/movie/${id}`)
-  return result.data
-}
-
-//add Movie
-export const addMovie = async (Movie: FormMovieAdd) => {
-  const result = await instance.post('/movie', Movie)
-  return result.data
-}
-
-//edit cinema
-export const editMovie = async (cinema: FormMovieAdd, id: string) => {
-  const result = await instance.patch(`/movie/${id}`, cinema)
-  return result.data
-}
-// update price movie
-//edit cinema
-export const editMoviePice = async (cinema : any , id: any) => {
-  const result = await instance.patch(`/movies/price/${id}`, cinema)
-  return result.data
-}
