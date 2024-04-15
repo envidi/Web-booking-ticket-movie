@@ -16,7 +16,7 @@ const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="324014411975-91ja7o2vbjrurgd8jlkfvsa0em7d2p8b.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="1060274819778-v3f29t7he31mgvhg8o4ai7ftlh9vpm2c.apps.googleusercontent.com">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
