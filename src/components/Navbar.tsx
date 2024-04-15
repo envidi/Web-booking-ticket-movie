@@ -7,7 +7,6 @@ import { SignupModal } from '@/pages/modals/SignupModal'
 import { ContextAuth, ContextMain } from '@/context/Context'
 import { LoginModal } from '@/pages/modals/LoginModal'
 // import { MdLogout } from 'react-icons/md'
-import { toast } from 'react-toastify'
 import DropDownMenu from './DropDownMenu'
 import { Bell } from 'lucide-react'
 import { Separator } from './ui/separator'
@@ -25,7 +24,7 @@ export const Navbar = ({
   const [showNav, setShowNav] = useState(false)
   // const [showProfile, setShowProfile] = useState(false)
   // const [signUpState, setSignUpState] = useState(false)
-  const { isLogined, setIsLogined } = useContext<ContextAuth>(ContextMain)
+  const { isLogined } = useContext<ContextAuth>(ContextMain)
   const toggleShowForm = () => {
     setShowSignup((pre) => !pre)
   }
