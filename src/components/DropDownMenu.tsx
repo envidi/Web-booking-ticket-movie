@@ -38,12 +38,9 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Link } from 'react-router-dom'
 import TooltipComponent from './TooltipComponent'
 import { useContext } from 'react'
-interface DropDownMenuType {
-  logout: () => void
-}
 
-function DropDownMenu({ logout }: DropDownMenuType) {
-  const { userDetail } = useContext<ContextAuth>(ContextMain)
+function DropDownMenu() {
+  const { userDetail, logout } = useContext<ContextAuth>(ContextMain)
 
   return (
     <DropdownMenu>
@@ -80,11 +77,13 @@ function DropDownMenu({ logout }: DropDownMenuType) {
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
-          <DropdownMenuItem>
-            <CreditCard className="mr-2 h-6 w-6" />
-            <span>Lịch sử mua</span>
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link to={'/profile/bill'}>
+            <DropdownMenuItem>
+              <CreditCard className="mr-2 h-6 w-6" />
+              <span>Lịch sử mua</span>
+              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
           <Link to={'/profile/forms/appearance'}>
             <DropdownMenuItem>
               <Settings className="mr-2 h-6 w-6" />
@@ -127,14 +126,14 @@ function DropDownMenu({ logout }: DropDownMenuType) {
           {/* <DropdownMenuItem> */}
           <AlertDialogTrigger asChild>
             {/* <Button variant="outline"> */}
-            <div className='flex px-5 text-2xl py-3 items-center'>
+            <div className="flex px-5 text-2xl py-3 items-center">
               <LogOut className="mr-2 h-6 w-6" />
               <span>Đăng xuất</span>
             </div>
 
             {/* </Button> */}
           </AlertDialogTrigger>
-          <AlertDialogContent className='bg-primary-nameMovie'>
+          <AlertDialogContent className="bg-primary-nameMovie">
             <AlertDialogHeader>
               <AlertDialogTitle className="text-2xl text-background-main mt-3 font-bold">
                 Bạn có chắc chắn muốn đăng xuất không?

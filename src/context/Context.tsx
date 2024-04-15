@@ -25,6 +25,7 @@ import {
   getAllShowTimes,
   updateShowtimes
 } from '@/api/showtime'
+import { useNavigate } from 'react-router-dom'
 
 export interface ContextAuth {
   userDetail: {
@@ -84,6 +85,7 @@ export const ContextMain = createContext<ContextAuth>({
 
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   const { mutate } = useTicket(DELETE_TICKET)
+  const navigate = useNavigate()
   const [ticket] = useLocalStorage<TicketType>('ticket')
   const queryClient = useQueryClient()
   const [isLogined, setIsLogined] = useState(
@@ -117,7 +119,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.removeItem('ticket')
       localStorage.removeItem('countdown')
     }, 1000)
-    // navigate('/')
+    navigate('/')
     setIsLogined(false)
     toast.success('Đăng xuất thành công')
   }

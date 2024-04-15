@@ -53,22 +53,23 @@ export const MovieInfoSection = () => {
   const { userDetail } = useContext(ContextMain)
   const { data: dataWatchList } = useWatchList(userDetail)
   const watchListId = dataWatchList
-    ? dataWatchList.map(
-        (watchId: { movieId: { _id: string } }) => watchId.movieId._id
-      )
-    : []
+  ? dataWatchList.map(
+    (watchId: { movieId: { _id: string } }) => watchId.movieId._id
+  )
+  : []
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const movies = useSelector((state: any) => state.movies.movies)
   const [, setTicket] = useLocalStorage<TicketType | null>('ticket', null)
   // const [date] = useState<Date | undefined>(new Date())
   // const [currentLocation, setCurrentLocation] = useState<string>(
-  //   '65d30a80a047aeebd3c78c72'
+    //   '65d30a80a047aeebd3c78c72'
   // )
   const navigate = useNavigate()
   const { slug } = useParams()
-
+  
   const { _id = '' } =
-    movies.length > 0 && movies.find((movie: MovieType) => movie.slug === slug)
+  movies.length > 0 && movies.find((movie: MovieType) => movie.slug === slug)
+  console.log(!watchListId.includes(_id))
   const { mutate: mutateWatchlist, isPending } = useMutation({
     mutationFn: (data: { userId: string; movieId: string }) =>
       addWatchList(data),
@@ -239,7 +240,7 @@ export const MovieInfoSection = () => {
                   ></iframe>
                 </DialogContent>
               </Dialog>
-              {!watchListId.includes(_id) ? (
+              {watchListId.includes(_id) ? (
                 <Button
                   onClick={handleAddWatchList}
                   className="bg-primary-movieColor text-2xl flex items-center border-transparent hover:text-primary-movieColor hover:bg-transparent border hover:border-primary-movieColor"

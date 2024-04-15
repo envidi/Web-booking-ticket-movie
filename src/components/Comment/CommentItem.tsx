@@ -87,7 +87,7 @@ function CommentItem({
               <div className="font-semibold text-[#babbc0] gap-4 px-2 flex items-center justify-center space-x-1">
                 <a className="hover:underline">
                   <small
-                    className={`flex ${comment?.like && comment?.like.includes(userDetail.message._id) ? 'text-primary-movieColor' : ''}`}
+                    className={`flex ${comment?.like && comment?.like.includes(userDetail?.message?._id) ? 'text-primary-movieColor' : ''}`}
                     onClick={handleLike}
                   >
                     <ThumbsUp size={20} className="mb-2" />

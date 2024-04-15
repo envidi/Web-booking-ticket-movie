@@ -15,7 +15,6 @@ import { PageLoader } from './components/PageLoader'
 // import Profile from './pages/modals/Profile'
 import useAllMovie from './hooks/useAllMovie'
 
-
 // import ShowtimesPage from './pages/Showtimes/ShowtimesPage'
 import NotFound from './pages/NotFound/NotFound'
 // import CategoryAdd from './admin/pages/Category/Add'
@@ -239,8 +238,6 @@ function App() {
                 />
               </Route>
             </Route>
-
-          
           </Routes>
         </AnimatePresence>
 

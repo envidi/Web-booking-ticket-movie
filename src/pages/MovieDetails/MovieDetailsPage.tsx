@@ -8,8 +8,6 @@ import Comment from '@/components/Comment/Comment'
 import '@/components/Comment/comment.css'
 
 const MovieDetailsPage = () => {
- 
-
   return (
     <AnimatedPage>
       <>

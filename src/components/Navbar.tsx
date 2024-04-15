@@ -39,11 +39,7 @@ export const Navbar = ({
   const toggleShowFormSignIn = () => {
     setShowSignIn((pre) => !pre)
   }
-  const logout = () => {
-    localStorage.removeItem('Accesstoken')
-    setIsLogined(false)
-    toast.success('Đăng nhập thành công')
-  }
+  
 
   return (
     <>
@@ -141,7 +137,7 @@ export const Navbar = ({
           />
           {isLogined ? (
             <>
-              <DropDownMenu logout={logout} />
+              <DropDownMenu  />
               {/* <MdLogout className="text-2xl cursor-pointer " onClick={logout} /> */}
             </>
           ) : (
