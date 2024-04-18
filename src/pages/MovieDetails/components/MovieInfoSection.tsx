@@ -28,6 +28,7 @@ export interface ShowTimeType {
   screenRoomId: string
   _id: string
   timeFrom: string
+  timeTo: string
   date: string
 }
 export interface ShowTime {
@@ -53,23 +54,19 @@ export const MovieInfoSection = () => {
   const { userDetail } = useContext(ContextMain)
   const { data: dataWatchList } = useWatchList(userDetail)
   const watchListId = dataWatchList
-  ? dataWatchList.map(
-    (watchId: { movieId: { _id: string } }) => watchId.movieId._id
-  )
-  : []
+    ? dataWatchList.map(
+        (watchId: { movieId: { _id: string } }) => watchId.movieId._id
+      )
+    : []
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const movies = useSelector((state: any) => state.movies.movies)
   const [, setTicket] = useLocalStorage<TicketType | null>('ticket', null)
-  // const [date] = useState<Date | undefined>(new Date())
-  // const [currentLocation, setCurrentLocation] = useState<string>(
-    //   '65d30a80a047aeebd3c78c72'
-  // )
+
   const navigate = useNavigate()
   const { slug } = useParams()
-  
+
   const { _id = '' } =
-  movies.length > 0 && movies.find((movie: MovieType) => movie.slug === slug)
-  console.log(!watchListId.includes(_id))
+    movies.length > 0 && movies.find((movie: MovieType) => movie.slug === slug)
   const { mutate: mutateWatchlist, isPending } = useMutation({
     mutationFn: (data: { userId: string; movieId: string }) =>
       addWatchList(data),
@@ -114,6 +111,12 @@ export const MovieInfoSection = () => {
   } = dataMovie
 
   const handleChooseShowtime = (showtime: ShowTimeType) => {
+    if (userDetail && userDetail.message.isBlocked) {
+      toast.error('Bạn đã bị block do vi phạm quy định', {
+        position: 'top-right'
+      })
+      return
+    }
     const screenRoom = dataMovie.showTimeCol.find(
       (screen: { screenRoomId: { _id: string } }) => {
         return screen.screenRoomId._id == showtime.screenRoomId
@@ -123,7 +126,8 @@ export const MovieInfoSection = () => {
     const ticketObject = {
       id_showtime: {
         _id: showtime._id,
-        timeFrom: showtime.timeFrom
+        timeFrom: showtime.timeFrom,
+        timeTo: showtime.timeTo
       },
       cinema_name: screenRoom.cinemaId.CinemaName,
       cinemaId: {
@@ -227,7 +231,7 @@ export const MovieInfoSection = () => {
               <Dialog>
                 <DialogTrigger asChild>
                   <Button size="md" variant="outline">
-                  Đoạn phim giới thiệu
+                    Trailer
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="p-0 w-fit">
@@ -240,7 +244,7 @@ export const MovieInfoSection = () => {
                   ></iframe>
                 </DialogContent>
               </Dialog>
-              {watchListId.includes(_id) ? (
+              {!watchListId.includes(_id) && userDetail ? (
                 <Button
                   onClick={handleAddWatchList}
                   className="bg-primary-movieColor text-2xl flex items-center border-transparent hover:text-primary-movieColor hover:bg-transparent border hover:border-primary-movieColor"
@@ -275,6 +279,7 @@ export const MovieInfoSection = () => {
             <MovieShowtimeSection
               handleChooseShowtime={handleChooseShowtime}
               showTimeDimension={showTimeDimension}
+              dataMovie={dataMovie}
             />
           )}
           {!showTimeDimension ||

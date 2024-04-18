@@ -175,7 +175,7 @@ export const Navbar = ({
                 </button>
 
                 {showNav && (
-                  <div className="signup-options">
+                  <div className="signup-options md:block hidden">
                     {
                       <ul className="signup-buttons">
                         <li>

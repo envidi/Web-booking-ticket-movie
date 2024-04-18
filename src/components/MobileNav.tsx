@@ -85,10 +85,10 @@ const MobileNav = ({ menuState, menuStyle, setMenuState }: MobileNav) => {
               className="mobile-nav-item"
               onClick={() => {
                 setMenuState((prev: boolean) => !prev)
-                navigate('/aboutus')
+                navigate('/policy')
               }}
             >
-              Về chúng tôi
+              Quy định
             </button>
           </li>
           {!userDetail ? (
