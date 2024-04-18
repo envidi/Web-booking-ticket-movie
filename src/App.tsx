@@ -48,6 +48,7 @@ import ProtectedAuthorized from './pages/Routes/ProtectedAuthorRoute'
 import ProtectedConfirm from './pages/Routes/ProtectedConfirm'
 import PendingResult from './pages/ResultPage/PendingResult'
 import ProtectedResultPage from './pages/Routes/ProtectedResultPage'
+import PolicyPage from './pages/Policy/PolicyPage'
 
 const ProfileWatchListPage = lazy(
   () => import('./pages/Profile/WatchList/page')
@@ -166,6 +167,7 @@ function App() {
                 }
               />
               <Route path="*" element={<NotFound />} />
+              <Route path="/policy" element={<PolicyPage />} />
               <Route
                 path="/movies"
                 element={
